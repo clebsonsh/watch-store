@@ -103,7 +103,7 @@
         <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400"
           >Brand</a
         >
-        <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
+        <p class="py-2 text-gray-500 sm:py-0">&#169; All rights reserved</p>
       </div>
     </footer>
   </div>
