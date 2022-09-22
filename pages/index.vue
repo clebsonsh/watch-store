@@ -28,7 +28,6 @@ export default {
   },
   async created() {
     this.products = (await this.$axios.get('/api/products')).data.products;
-    await this.$axios.get('/api/users');
   },
 };
 </script>
