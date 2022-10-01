@@ -42,7 +42,7 @@ describe('ProductList - integration', () => {
     expect(axios.get).toHaveBeenLastCalledWith('/api/products');
   });
 
-  fit('should mount the ProductCard component 10 times', async () => {
+  it('should mount the ProductCard component 10 times', async () => {
     const products = server.createList('product', 10);
 
     axios.get.mockReturnValue(Promise.resolve({ data: { products } }));
@@ -57,5 +57,21 @@ describe('ProductList - integration', () => {
 
     const cards = wrapper.findAllComponents(ProductCard);
     expect(cards).toHaveLength(10);
+  });
+
+  it('should display the error message wneh Promise rejects', async () => {
+    axios.get.mockReturnValue(
+      Promise.reject(new Error('Problemas ao carregar a lista!'))
+    );
+
+    const wrapper = mount(ProductList, {
+      mocks: {
+        $axios: axios,
+      },
+    });
+
+    await nextTick();
+
+    expect(wrapper.text()).toContain('Problemas ao carregar a lista!');
   });
 });
